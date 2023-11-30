@@ -1,0 +1,332 @@
+<div class="row mx-3 my-3">
+  <div class="m-3">
+    <!-- Button trigger modal -->
+    <div class="ps-3">
+      <button
+        type="button"
+        class="btn btn-lg rounded-circle my-3"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        <i class="fa-solid fa-plus fa-xl" style="color: #f5f9ff"></i>
+      </button>
+      Create Event
+    </div>
+
+    <!-- event tables -->
+    <div class="justify-content-center">
+      <table class="table">
+        <tr class="text-center">
+          <th class="table__heading">Id</th>
+          <th class="table__heading">Event-Name</th>
+          <th class="table__heading">Description</th>
+          <th class="table__heading">Price</th>
+          <th class="table__heading">TotalTickets</th>
+          <th class="table__heading">Remaining Ticket</th>
+          <th class="table__heading">Date</th>
+          <th class="table__heading">Category-Name</th>
+          <!-- <th class="table__heading">Address</th> -->
+          <th class="table__heading">Action</th>
+        </tr>
+        <tr class="table__row" *ngFor="let event of events">
+          <td class="table__content" data-heading="Id">{{ event.id }}</td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.title | slice:0:25}}..
+          </td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.desc | slice:0:25}}..
+          </td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.price }}
+          </td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.totalAvailability }}
+          </td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.balance }}
+          </td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.eventDate | slice : 0 : 10 }}
+          </td>
+          <td class="table__content" data-heading="Category-Name">
+            {{ event.eventCategory.c_name }}
+          </td>
+          <!-- <td class="table__content" data-heading="Category-Name">
+            {{ event.address.address }}, {{ event.address.city }},
+            {{ event.address.zipcode }}
+          </td> -->
+          <td class="d-flex">
+            <button
+              class="btn btn-primary mx-4 pe-2"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="editcategory(event)"
+            >
+              <i class="fa-solid fa-pen-to-square  px-2" style="color: white"></i>
+              Edit
+            </button>
+            <button class="btn btn-danger pe-2" (click)="deletecategory(event.id)">
+              <i class="fa-solid fa-trash-arrow-up  px-2" style="color: white"></i>
+              Delete
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  
+</div>
+
+<div>
+  <!-- Modal -->
+  <div
+    class="modal fade mx-5"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Event</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <br />
+        <hr />
+        <div class="modal-body">
+          <form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)">
+            <input type="hidden" name="id" [(ngModel)]="eventModel.id" />
+            <div>
+              <input
+                type="text"
+                name="title"
+                class="form-control"
+                placeholder="Event Name"
+                required
+                [(ngModel)]="eventModel.title"
+                ngModel
+                #name="ngModel"
+                [ngClass]="name.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="name.errors?.['required'] && name.dirty"
+                class="invalid-feedback"
+              >
+                !!!Event-Name is required!!!
+              </div>
+            </div>
+
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input form-control"
+                id="inputGroupFile01"
+                (change)="onFileChange($event)"
+              />
+              <label class="custom-file-label" for="inputGroupFile01"
+                >Choose file</label
+              >
+            </div>
+
+            <div class="desc">
+              <input
+                type="text"
+                name="desc"
+                class="form-control"
+                placeholder="Description"
+                required
+                [(ngModel)]="eventModel.desc"
+                ngModel
+                #desc="ngModel"
+                [ngClass]="desc.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="desc.errors?.['required'] && desc.dirty"
+                class="invalid-feedback"
+              >
+                !!!Event-Desc is required!!!
+              </div>
+              <!-- <div *ngIf="error.length > 0" class="text-danger">
+                !!!Description should have atleast 15 characters!!!
+              </div> -->
+            </div>
+
+            <div>
+              <input
+                type="number"
+                name="price"
+                class="form-control"
+                placeholder="Price"
+                required
+                min="1"
+                [(ngModel)]="eventModel.price"
+                ngModel
+                #price="ngModel"
+                [ngClass]="price.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="price.errors?.['required'] && price.dirty"
+                class="invalid-feedback"
+              >
+                !!!Price is required!!!
+              </div>
+              <!-- <div *ngIf="errornum.min >0 ? 'is-invalid' : ''">
+                Price Value should be greater than 0....
+            </div> -->
+            </div>
+
+            <div>
+              <input
+                type="number"
+                name="totalTickets"
+                class="form-control"
+                placeholder="Total Number of Tickets Available"
+                required
+                [(ngModel)]="eventModel.totalAvailability"
+                ngModel
+                #Tickets="ngModel"
+                [ngClass]="Tickets.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="Tickets.errors?.['required'] && Tickets.dirty"
+                class="invalid-feedback"
+              >
+                !!!Total Tickets is required!!!
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="number"
+                name="balanceTickets"
+                class="form-control"
+                placeholder="balanceTickets"
+                required
+                [(ngModel)]="eventModel.balance"
+                ngModel
+                #balanceTickets="ngModel"
+                [ngClass]="balanceTickets.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="balanceTickets.errors?.['required'] && balanceTickets.dirty"
+                class="invalid-feedback"
+              >
+                !!!balanceTickets is required!!!
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="date"
+                name="eventDate"
+                class="form-control"
+                placeholder="eventDate"
+                required
+                [(ngModel)]="eventModel.eventDate"
+                ngModel
+                #date="ngModel"
+                [ngClass]="date.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="date.errors?.['required'] && date.dirty"
+                class="invalid-feedback"
+              >
+                !!!date is required!!!
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="number"
+                name="category"
+                class="form-control"
+                placeholder="category"
+                required
+                [(ngModel)]="eventModel.categoryId"
+                ngModel
+                #category="ngModel"
+                [ngClass]="category.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="category.errors?.['required'] && category.dirty"
+                class="invalid-feedback"
+              >
+                !!!category is required!!!
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="text"
+                name="address"
+                class="form-control"
+                placeholder="address"
+                required
+                [(ngModel)]="eventModel.address"
+                ngModel
+                #address="ngModel"
+                [ngClass]="address.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="address.errors?.['required'] && address.dirty"
+                class="invalid-feedback"
+              >
+                !!!address is required!!!
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="text"
+                name="city"
+                class="form-control"
+                placeholder="city"
+                required
+                [(ngModel)]="eventModel.city"
+                ngModel
+                #city="ngModel"
+                [ngClass]="city.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="city.errors?.['required'] && city.dirty"
+                class="invalid-feedback"
+              >
+                !!!city is required!!!
+              </div>
+            </div>
+
+            <div>
+              <input
+                type="number"
+                name="zipcode"
+                class="form-control"
+                placeholder="zipcode"
+                required
+                [(ngModel)]="eventModel.zipcode"
+                ngModel
+                #zipcode="ngModel"
+                [ngClass]="zipcode.invalid ? 'is-invalid' : ''"
+              /><br />
+              <div
+                *ngIf="zipcode.errors?.['required'] && zipcode.dirty"
+                class="invalid-feedback"
+              >
+                !!!Zipcode is required!!!
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-6">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-6 ">
+        <div class="main justify-content-center ">
+          <input type="checkbox" id="chk" aria-hidden="true" />
+
+          <div class="signup">
+            <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+              <label for="chk" aria-hidden="true">Register</label>
+              <div>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Username"
+                  [(ngModel)]="username"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="name"
+                  class="form-control"
+                  [(ngModel)]="name"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  [(ngModel)]="password"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="confirmPassword"
+                  [(ngModel)]="confirmPassword"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+          </div>
+
+          <div class="login">
+            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+              <label for="chk" aria-hidden="true">Login</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Email"
+                name="username"
+                [(ngModel)]="username"
+              />
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+                [(ngModel)]="password"
+              />
+              <p
+                class="error"
+                [ngClass]="error.length > 0 ? 'visible' : 'invisible'"
+              >
+                {{ error }}
+              </p>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

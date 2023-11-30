@@ -1,0 +1,40 @@
+<div class="navbar navbar-expand-lg me-5">
+  <nav class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+      [src]="'assets/images/logo3.png'"   height="70" width="210"
+      />
+    </a>
+
+    <div class="d-flex">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+           <h5><i class="fa-regular fa-user fa-lg pe-2" style="color: black;"></i>   Holaa!! - {{user.username}}</h5>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="row m-1">
+  <h3 class="m-2">Popular Events</h3>
+  <div class="col-4 justify-content-between" *ngFor="let event of popularEvents">
+    <div class="container">
+      <div class="wrapper">
+        <div class="banner-image"> <img src="{{ loadImage(event.id!) }}" width="100%" height="100%" alt=""></div>
+        <h4>{{event.title}}</h4>
+        <p>
+          {{event.desc}}
+        </p>
+        <p> Date : {{ event.eventDate | slice : 0 : 10 }}</p>
+        <div class="button-wrapper">
+          <button class="btn fill">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4"></div>
+  <div class="col-4"></div>
+</div>

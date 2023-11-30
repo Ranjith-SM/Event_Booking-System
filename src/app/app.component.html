@@ -1,0 +1,133 @@
+<div *ngIf="!isLoggedIn">
+  <router-outlet />
+</div>
+
+<div *ngIf="isLoggedIn" class="container-fluid vh-100 d-flex flex-column">
+  <div *ngIf="!isAdmin" class="row">
+    <div class="navbar nav">
+      <a routerLink="/" routerLinkActive="nav-active"  [routerLinkActiveOptions]="{exact: true}" class="nav-link" > <img [src]="'assets/images/home.png'"></a>
+      <a routerLink="/event" routerLinkActive="nav-active"  [routerLinkActiveOptions]="{exact: true}" class="nav-link"> <img [src]="'assets/images/ticket.png'"></a>
+      <a routerLink="/booked" routerLinkActive="nav-active"  [routerLinkActiveOptions]="{exact: true}"  class="nav-link"> <img [src]="'assets/images/history.png'" alt=""> </a>
+
+      <a class="nav-link" (click)="logout()" role="a">
+        <img [src]="'assets/images/power-on.png'" alt="">
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="isAdmin">
+
+    <nav class="anavbar navbar-expand-lg py-2">
+      <div class=" container-fluid d-flex justify-content-between">
+        <a class="anavbar-brand" href="#">
+          <img [src]="'assets/images/logo3.png'"   height="70" width="210" />
+        </a>
+        <a
+          class="navbar-toggler"
+          type="a"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </a>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarSupportedContent"
+        >
+          <div class="nav_left d-lg-flex ">
+            <nav>
+              <div
+                class="nav d-block d-lg-flex nav-tabs"
+                id="nav-tab"
+                role="tablist"
+              >
+                <a
+                  class="nav-link active"
+                  routerLink="/admin"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  Dashboard
+                </a>
+                <a
+                  class="nav-link"
+                  routerLink="/adminCategory"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  Category
+                </a>
+                <a
+                  class="nav-link"
+                  routerLink="/adminEvent"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  Event
+                </a>
+                <a
+                  class="nav-link"
+                  routerLink="/bookedEvent"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  Booked-Events
+                </a>
+                <a
+                  class="nav-link"
+                  routerLink="/users"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  Users
+                </a>
+
+                <div class="nav-link px-4 text-white" (click)="logout()" role="a">
+                  <i class="fa-solid fa-solid fa-right-from-bracket color" style="color: white;"></i>
+                </div>
+              </div>
+              
+            </nav>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="!isAdmin">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div *ngIf="loaderService.isLoading | async" class="loader">
+  <ng-lottie [options]="options"></ng-lottie>
+</div>

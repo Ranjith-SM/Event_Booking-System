@@ -1,0 +1,98 @@
+<div class="navbar navbar-expand-lg me-5">
+  <nav class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img [src]="'assets/images/logo3.png'"   height="70" width="210" />
+    </a>
+
+    <div class="d-flex">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <h5>
+            <i class="fa-regular fa-user fa-lg pe-2" style="color: black"></i>
+            Holaa!!-{{user.username}}
+          </h5>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="row my-3">
+  <div class="col-9 ">
+    <h3 class="ms-4">Events Booked</h3>
+    <div class="event-container d-flex flex-wrap ">
+      <div class="col-6" *ngFor="let event of bookedEvents">
+        <div class="event">
+          <div class="course-preview ">
+            <div class="imgdiv">
+              <img
+            
+              src="{{ loadImage(event.eventTicket.id!) }}"
+              height="100px"
+              width="150px"
+              alt=""
+            />
+            </div>
+          </div>
+          <div class="course-info">
+            <h2>{{ event.eventTicket.title | slice:0:10}}...</h2>
+            <div class="d-flex justify-content-between">
+              <h6>Price: Rs.{{ event.eventTicket.price }}</h6><br>
+              
+            </div>
+            <h6>Date: {{ event.eventTicket.eventDate | slice : 0 : 10 }}</h6>
+            <h5>People List:</h5>
+            <ul *ngFor="let people of event.userDetails">
+              <li>{{ people.name }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3  suggestion">
+    <h3 class="suggest">You may Also like....</h3>
+
+    <div >
+      <div class="suggest_cards">
+        <div class="">
+          <section>
+            <div class="carousel__container mx-0">
+              <div class="carousel-item align-content-center">
+                <img
+                  class="carousel-item__img"
+                  src="{{ getImage(suggestEvent.id!) }}"
+                  alt="people"
+                />
+                <div class="carousel-item__details">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="carousel-item__details--title">
+                      {{ suggestEvent.title | slice : 0 : 15 }}...
+                    </h5>
+                    
+                  </div>
+                  <h6 class="carousel-item__details--subtitle">
+                    Price : Rs.{{ suggestEvent.price }}
+                  </h6>
+                  <h6 class="carousel-item__details--subtitle">
+                    Date : {{ suggestEvent.eventDate | slice : 0 : 10 }}
+                  </h6>
+                  <div>
+                    <button
+                      class="btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                    >
+                      Book
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

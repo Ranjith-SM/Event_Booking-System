@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>Registered Users </h2>
+    <ul class="responsive-table ">
+      <li class="table-header">
+        <div class="col col-1">User-Id</div>
+        <div class="col col-1">Name</div>
+        <div class="col col-1">UserName</div>
+        <div class="col col-1">JoinedAt</div>
+      </li>
+      <li class="table-row" *ngFor="let userDetail of userDetails">
+        <div class="col col-1" data-label="User-Id">{{userDetail.id}}</div>
+        <div class="col col-1" data-label="Name">{{userDetail.name}}</div>
+        <div class="col col-1" data-label="UserName">{{userDetail.username}}</div>
+        <div class="col col-1" data-label="JoinedAt">{{userDetail.joinedAt}}</div>
+      </li>
+    
+    </ul>
+  </div>

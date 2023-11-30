@@ -1,0 +1,33 @@
+<div class="table-users">
+  <div class="header">Booked-Events</div>
+
+  <table cellspacing="0">
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th>Event-Name</th>
+      <th>Price</th>
+      <th>Date</th>
+      <th>City</th>
+      <th>UserName</th>
+      <th width="230">People List</th>
+    </tr>
+
+    <tr *ngFor="let event of bookedEvents" >
+      <td>{{event.id}}</td>
+      <td><img src="{{getImage(event.eventTicket.id)}}" alt="" /></td>
+      <td>{{event.eventTicket.title}}</td>
+      <td>{{event.eventTicket.price}}</td>
+      <td>{{event.eventTicket.eventDate | slice:0:10}}</td>
+      <td>{{event.eventTicket.address.city}}</td>
+      <td>{{event.appUser.username}}</td>
+      <td *ngFor="let people of event.userDetails"> 
+        <ul>
+          <li>{{people.name}}</li>
+        </ul>
+      </td>
+    </tr>
+
+    
+  </table>
+</div>

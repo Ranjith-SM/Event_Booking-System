@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-6">
+    <div  class="registration-form">
+      
+      <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm); categoryForm.resetForm()">
+        <h3 class="my-3">Create Category</h3>
+        <input type="hidden" name="id" [(ngModel)]="categoryModel.id" />
+        <input
+          type="text"
+          name="category"
+          id="category"
+          class="form-control"
+          placeholder="Category-Name"
+          required
+          [(ngModel)]="categoryModel.c_name"
+          ngModel
+          #modelName="ngModel"
+          [ngClass]="modelName.invalid ? 'is-invalid' : ''"
+        /><br />
+        <div
+          *ngIf="modelName.errors?.['required'] && modelName.dirty"
+          class="invalid-feedback"
+        >
+          Please Enter Category-Name
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg ">Create</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+
+    <!-- categories tables -->
+    <table class="table">
+      <tr>
+        <th class="table__heading">Id</th>
+        <th class="table__heading">Category-Name</th>
+        <th class="table__heading">Action</th>
+      </tr>
+      <tr class="table__row" *ngFor="let category of categories">
+        <td class="table__content" data-heading="Id">{{ category.id }}</td>
+        <td class="table__content" data-heading="Category-Name">
+          {{ category.c_name }}
+        </td>
+        <td>
+          <button
+            class="btn btn-primary mx-4 pe-2"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            (click)="editcategory(category)"
+          >
+            <i class="fa-solid fa-pen-to-square px-2" style="color: white"></i>
+            Edit
+          </button>
+          <button class="btn btn-danger pe-2" (click)="deletecategory(category.id)">
+            <i class="fa-solid fa-trash-arrow-up px-2" style="color: white"></i>
+            Delete
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
