@@ -52,8 +52,8 @@ This project is developed using JAVA V-17.0.8 and Springboot for the backend API
 
 
 ## Repositories:
-      1. BACKEND (SPRINGBOOT-API) :
-      2. UI : 
+      1. BACKEND (SPRINGBOOT-API) : https://github.com/Ranjith-SM/Event_Booking_API-EndPoints
+      2. UI : https://github.com/Ranjith-SM/Event_Booking-System
 
 ## MYSQL SCHEMA:
 
