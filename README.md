@@ -26,6 +26,8 @@ This project is developed using JAVA V-17.0.8 and Springboot for the backend API
 ## Demo Video:
 <a href="https://drive.google.com/drive/folders/1d05jfBRp2G2IBPkurjtPJN93glCI_gNO?usp=sharing" > Click To See...</a>
 
+https://drive.google.com/file/d/1e_ybnMh_xFvqCdj9mBsUsKG-C49fwQdP/view?usp=sharing
+
 ## Tech Stack:
 
 **Client:** Angular, Bootstrap, CSS, 
