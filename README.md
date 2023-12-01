@@ -56,7 +56,8 @@ This project is developed using JAVA V-17.0.8 and Springboot for the backend API
       2. UI : https://github.com/Ranjith-SM/Event_Booking-System
 
 ## MYSQL SCHEMA:
-      <img src="Screenshots/SQLSchema.png">
+
+<img src="Screenshots/SQLSchema.png">
 
 ## ACCESS CREDENTIALS:
 
