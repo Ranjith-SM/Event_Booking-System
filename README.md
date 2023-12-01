@@ -70,23 +70,23 @@ This project is developed using JAVA V-17.0.8 and Springboot for the backend API
 
 ## Screenshots:
 
-      <img src="Screenshots/userhome.png">
+<img src="Screenshots/userhome.png">
 
-      <img src="Screenshots/event.png">
+<img src="Screenshots/event.png">
 
-      <img src="Screenshots/eventSearch.png">
+<img src="Screenshots/eventSearch.png">
 
-      <img src="Screenshots/BookedEvents.png">
+<img src="Screenshots/BookedEvents.png">
 
-      <img src="Screenshots/dashboard.png">
+<img src="Screenshots/dashboard.png">
 
-      <img src="Screenshots/category.png">
+<img src="Screenshots/category.png">
 
-      <img src="Screenshots/eventAdmin.png">
+<img src="Screenshots/eventAdmin.png">
 
-      <img src="Screenshots/adminBooked.png">
+<img src="Screenshots/adminBooked.png">
 
-      <img src="Screenshots/viewUsers.png">
+<img src="Screenshots/viewUsers.png">
 
 
 
