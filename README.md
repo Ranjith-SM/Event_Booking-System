@@ -70,9 +70,11 @@ This project is developed using JAVA V-17.0.8 and Springboot for the backend API
 
 ## Screenshots:
 
+<img src="Screenshots/event.png">
+
       ![ScreenShot](Screenshots/userhome.png")
 
-      <img src="Screenshots/event.png">
+      
 
       <img src="Screenshots/eventSearch.png">
 
